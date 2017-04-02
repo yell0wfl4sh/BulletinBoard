@@ -1,0 +1,12 @@
+{% if notice_list %}
+    <h2>Notices</h2>
+    <h3>category.name</h3>
+    <ol>
+    {% for notice in notice_list %}
+	<li> {{notice.upload}} <a href= "/bulletin/notices/{{ notice.id}}/" >  : {{notice.subject }}</a></li>
+
+    {% endfor %}
+    </ol>
+    {% else %}
+	<p> No NOtice available</p>
+{% endif %}

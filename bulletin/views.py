@@ -17,12 +17,16 @@ def index(request):
             user = authenticate(username=username, password=password)
 	    if user is not None:
                 login(request, user)
-		return HttpResponseRedirect(reverse('bulletin:notices',args=(username,)))
+		return HttpResponseRedirect(reverse('bulletin:notices'))
 	    else :
-		return HttpResponseRedirect("Input Ivalid")
+		return HttpResponseRedirect("Input Invalid")
     else:
 	form = Login()
     return render(request, 'bulletin/index.html',{'form':form,})
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('bulletin:index'))
 
 def notice(request):
     latest_notice_list = Notice.objects.order_by('-upload')
@@ -45,7 +49,7 @@ def student(request):
      return HttpResponse(template.render(context, request))
 
 def student_detail(request, student_id):
-    user = get_object_or_404(Student, pk=student_id)
+    student = get_object_or_404(Student, pk=student_id)
     return render(request, 'bulletin/student_detail.html', {'student': student}) 
 
 def category(request):
@@ -55,4 +59,17 @@ def category(request):
         'category_list': category_list,
     }
     return HttpResponse(template.render(context, request))    
- 
+
+def category_notice(request,category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    notice_list = Notice.objects.all().filter(category = category_id)
+    template = loader.get_template('bulletin/category_notice.html')
+    context = {                                           
+        'notice_list': notice_list,         
+    }
+    return HttpResponse(template.render(context, request))
+
+def change_password(request):
+    template_response = views.password_change(request)
+    # Do something with `template_response`
+    return template_response

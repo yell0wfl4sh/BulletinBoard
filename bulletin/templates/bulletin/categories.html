@@ -3,7 +3,7 @@
     <br>
     <ol>
     {% for category in category_list %}
-        <li>  {{category.name }}   <a href="/bulletin/category /{{ category.id }}/"> yaha se sari notices isse relaed wali khulengi</a></li>
+        <li> <a href="/bulletin/categories/{{ category.id }}/"> {{ category.name }} </a></li>
     {% endfor %}
     </ol>
 {% else %}

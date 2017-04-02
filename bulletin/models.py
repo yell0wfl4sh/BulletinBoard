@@ -9,7 +9,7 @@ class Notice(models.Model):
     upload = models.DateTimeField(auto_now_add=True)
     subject = models.CharField(max_length=40)
     content = models.CharField(max_length=300)
-    category = models.ForeignKey('CAtegory', on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
     expiry_date =  models.DateTimeField('expiry date')
     def __str__(self):              # __unicode__ on Python 2
         return self.subject
