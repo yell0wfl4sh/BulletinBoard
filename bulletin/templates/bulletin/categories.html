@@ -1,0 +1,11 @@
+{% if category_list %}
+    <h2>Category-></h2>
+    <br>
+    <ol>
+    {% for category in category_list %}
+        <li>  {{category.name }}   <a href="/bulletin/category /{{ category.id }}/"> yaha se sari notices isse relaed wali khulengi</a></li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No  category is  available.</p>
+{% endif %}

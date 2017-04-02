@@ -1,0 +1,12 @@
+{% if latest_notice_list %}
+    <h2>Notices-></h2>
+    <br>
+	chal jaa bhenchod
+    <ol>
+    {% for notice in latest_notice_list %}
+        <li>  {{notice.upload}}   <a href="/bulletin/notices/{{ notice.id }}/"> :  {{ notice.subject}}</a></li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No notice is  available.</p>
+{% endif %}

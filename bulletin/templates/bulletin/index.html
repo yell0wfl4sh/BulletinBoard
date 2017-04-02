@@ -1,0 +1,5 @@
+<form action="{% url 'bulletin:index' %}" method="post">
+	{% csrf_token %}
+	{{form}}
+	<input type="submit" name="submit">
+</form>

@@ -1,0 +1,11 @@
+{% if student_list %}
+    <h2>students</h2>
+    <br>
+    <ol>
+    {% for  student in student_list %}
+        <li>  {{  student.enr_no }}   <a href="/bulletin/students/{{ student.id }}/">   {{ student.user.username }}</a></li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No student. Sorry!.</p>
+{% endif %}
