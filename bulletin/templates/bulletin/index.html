@@ -1,5 +1,12 @@
+<h1>Welcome to BulletinBoard</h1>
+
+<div>
+<h3>Login></h3>
 <form action="{% url 'bulletin:index' %}" method="post">
 	{% csrf_token %}
 	{{form}}
 	<input type="submit" name="submit">
 </form>
+</div>
+
+<a href='/bulletin/register'>Register</a>

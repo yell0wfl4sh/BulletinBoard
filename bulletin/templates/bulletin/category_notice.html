@@ -1,8 +1,8 @@
 {% if notice_list %}
-    <h2>Notices</h2>
-    <h3>category.name</h3>
+    <h1>Notices</h1>
     <ol>
     {% for notice in notice_list %}
+       <h3>{{ notice.category }}</h3>
 	<li> {{notice.upload}} <a href= "/bulletin/notices/{{ notice.id}}/" >  : {{notice.subject }}</a></li>
 
     {% endfor %}

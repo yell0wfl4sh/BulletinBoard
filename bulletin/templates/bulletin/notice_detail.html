@@ -1,4 +1,4 @@
 <h1>{{ notice.subject }}</h1>
-<h3>Uploaded by: {{ notice.category }}</h3>
+<h3>Uploaded by:<a href="/bulletin/categories/{{ notice.category.id}}"> {{ notice.category }} </a></h3>
 <h3>posted: {{ notice.upload }}</h3>
 <p>{{ notice.content }} </p>
