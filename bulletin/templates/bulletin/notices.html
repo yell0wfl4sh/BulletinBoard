@@ -1,8 +1,10 @@
 <h1>Notices</h1>
 {% if request.user.is_superuser %}
-<a <a href="/bulletin/students/ ">>All users</a><br>
+<a <a href="/bulletin/students/ ">All users</a><br>
+<a>Upload notices</a><br>
+{% else %}
+<a href="/bulletin/students/{{request.user.id}}" >Profile</a><br>
 {% endif %}
-<a href="/bulletin/students/{{ request.user.id}}" >Profile</a><br>
 <a href="{% url 'bulletin:logout' %}">logout</a><br>
 <a href="/bulletin/categories/"> View all Categories</a>
 

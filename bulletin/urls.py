@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^students/(?P<student_id>[0-9]+)/$', views.student_detail, name='student_detail'),
     url(r'^categories/$', views.category, name='categories'),
     url(r'^categories/(?P<category_id>[0-9]+)/$', views.category_notice, name='category_notice'),
-] 
-
+    url(r'^students/(?P<student_id>[0-9]+)/subscribed/$', views.subscription, name='subscription'),
+    url(r'^students/(?P<student_id>[0-9]+)/starred/$', views.starred, name='starred'),
+]
 

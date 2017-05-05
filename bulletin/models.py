@@ -31,11 +31,14 @@ class Category(models.Model):
 class Subscription(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    suscribed = models.BooleanField()
-    sus_since = models.DateTimeField(auto_now=True)
+    subs_since = models.DateTimeField(auto_now=True)
 
 class SNlink(models.Model):
     notice = models.ForeignKey(Notice, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     star  = models.BooleanField()
     read  = models.BooleanField()
+
+class CNlink(models.Model):
+    notice = models.ForeignKey(Notice, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)

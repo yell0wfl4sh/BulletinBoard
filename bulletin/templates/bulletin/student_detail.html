@@ -1,12 +1,13 @@
 <h1>Student Detail</h1>
 <div>
-<h1>Username : {{ student.user.username }} </h1>
-<h1>Name : {{ student.user.first_name }} {{ student.user.last_name }}  </h1>
+<a href="/bulletin/students/{{student.id}}/subscribed">Subscribed</a><br>
+<a href="/bulletin/students/{{student.id}}/starred">Stared</a>
+</div
+<div>
+<h3>Username : {{ student.user.username }} </h3>
+<h3>Name : {{ student.user.first_name }} {{ student.user.last_name }}  </h3>
 <h3>Branch: {{ student.branch  }}</h3>
 <h3>Enrollment Number: {{ student.enr_no }} </h3>
 <h3>Email: {{ student.user.email }}</h3>
 </div>
-<div>
-<a>Subscribed</a>
-<a>Stared</a>
-</div>
+

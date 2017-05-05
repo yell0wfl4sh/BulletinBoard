@@ -1,0 +1,13 @@
+<div>
+{% if subscribed_list %}
+    <h1>Subscription</h1>
+    <br>
+    <ul>
+    {% for student in subscribed_list %}
+        <li> <a href="/bulletin/categories/{{ student.category.id }}/">   {{ student.category }}</a></li>
+    {% endfor %}
+    </ul>	
+{% else %}
+    <p>No student. Sorry!.</p>
+{% endif %}
+</div>

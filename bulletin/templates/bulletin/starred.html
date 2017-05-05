@@ -1,0 +1,13 @@
+<div>
+{% if notice_list %}
+    <h1>Starred Notice</h1>
+    <br>
+    <ul>
+    {% for notice in notice_list %}
+        <li>  {{notice.notice.upload}} ::::  <a href="/bulletin/categories/{{notice.categories.id}}/">{{notice.notice.category}} </a>  :::: <a href="/bulletin/notices/{{ notice.notice.id}}/ "> :  {{ notice.notice.subject}}</a></li>
+    {% endfor %}
+    </ul>	
+{% else %}
+    <p>No student. Sorry!.</p>
+{% endif %}
+</div>

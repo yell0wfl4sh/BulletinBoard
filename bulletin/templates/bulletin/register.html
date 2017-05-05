@@ -1,8 +1,10 @@
 <div>
 <h3>Register</h3>
-<form action="{% url 'bulletin:index' %}" method="post">
+<form action="{% url 'bulletin:notices' %}" method="post">
         {% csrf_token %}
-        {{form}}
+        {{ form }}
+      
+
         <input type="submit" name="submit">
 </form>
 </div>

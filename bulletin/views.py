@@ -6,7 +6,7 @@ from .forms import *
 from django.urls import reverse
 from django.template import loader
 from django.shortcuts import render
-
+from datetime import datetime
 
 def index(request):
     if request.user.is_authenticated:
@@ -44,14 +44,18 @@ def notice(request):
 def notice_detail(request, notice_id):
 	if request.user.is_authenticated:
 		notice = get_object_or_404(Notice, pk=notice_id)
-		return render(request, 'bulletin/notice_detail.html', {'notice': notice}) 
+		if datetime.now() > datetime.strptime(Notice.objects.only('expiry_date').get(pk= notice_id)):
+			status = 'expired'
+		else:
+			status= 'active'
+		return render(request, 'bulletin/notice_detail.html', {'notice': notice, 'status':status}) 
 	else:
 	    form= Login()
         return render(request, 'bulletin/index.html',{'form':form,})
 def student(request):
 	if request.user.is_superuser:
 	     student_list = Student.objects.all().order_by('enr_no')
-	     template = loader.get_template('bulletin/students.html')
+	     template = loader.get_template('bulletin/students.html') 
 	     context = {                                           
 	         'student_list': student_list,         
 	     }
@@ -93,6 +97,31 @@ def category_notice(request,category_id):
 	    form = Login()
         return render(request, 'bulletin/index.html',{'form':form,})
 
+def subscription(request,student_id):
+    if request.user.is_authenticated:	
+	subscribed_list = Subscription.objects.all().filter(student__id = student_id)
+	template = loader.get_template('bulletin/subscribed.html')
+	context = {                                           
+	    'subscribed_list': subscribed_list,         
+	}
+	return HttpResponse(template.render(context, request))
+    else:
+	form = Login()
+    return render(request, 'bulletin/index.html',{'form':form,})
+
+def starred(request,student_id):
+    if request.user.is_authenticated:
+	notice_list = SNlink.objects.all().filter(student__id = student_id)
+	template = loader.get_template('bulletin/starred.html')
+	context = {                                           
+	    'notice_list': notice_list,         
+	}
+	return HttpResponse(template.render(context, request))
+    else:
+	form = Login()
+    return render(request, 'bulletin/index.html',{'form':form,})
+	
+
 def register(request):
     if request.method == 'POST':
 	form = Register(request.POST)
@@ -109,5 +138,9 @@ def register(request):
             user_details = UserDetail(user=user,branch=branch,enr_no=enr_no)
 	    user_details.save()
             login(request, user)
-	    return HttpResponseRedirect(reverse('bulletin:notices'))
-    return HttpResponseRedirect(reverse('bulletin:register'))
+	    return HttpResponseRedirect(reverse('bulletin:register'))
+	else:        
+            return render(request, 'bulletin.html')
+    else:
+	form = Register(request.POST)
+        return render(request, 'bulletin/register.html')
