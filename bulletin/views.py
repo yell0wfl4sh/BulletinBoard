@@ -43,12 +43,14 @@ def notice(request):
 
 def notice_detail(request, notice_id):
 	if request.user.is_authenticated:
-		notice = get_object_or_404(Notice, pk=notice_id)
-		if datetime.now() > datetime.strptime(Notice.objects.only('expiry_date').get(pk= notice_id)):
-			status = 'expired'
-		else:
-			status= 'active'
-		return render(request, 'bulletin/notice_detail.html', {'notice': notice, 'status':status}) 
+	    notice = get_object_or_404(Notice, pk=notice_id)
+	    expirydate= notice.expiry_date
+	    if datetime.today() > expirydate:
+	        status = 'expired'
+	    else:
+	        status= 'active'
+	    return render(request, 'bulletin/notice_detail.html', {'notice': notice, 'statusware(datetime.datetime.now(), timezone.get_default_timezone())u':statu
+	    s})
 	else:
 	    form= Login()
         return render(request, 'bulletin/index.html',{'form':form,})
