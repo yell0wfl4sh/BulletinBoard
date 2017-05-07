@@ -49,8 +49,7 @@ def notice_detail(request, notice_id):
 	        status = 'expired'
 	    else:
 	        status= 'active'
-	    return render(request, 'bulletin/notice_detail.html', {'notice': notice, 'statusware(datetime.datetime.now(), timezone.get_default_timezone())u':statu
-	    s})
+	    return render(request, 'bulletin/notice_detail.html', {'notice': notice, 'status':status})
 	else:
 	    form= Login()
         return render(request, 'bulletin/index.html',{'form':form,})
