@@ -1,1 +1,1 @@
-web: gunicorn bulletin.wsgi --log-file -
+web: gunicorn prozero.wsgi:bulletin --log-file -
