@@ -1,5 +1,5 @@
 # BulletinBoard #
-BulletinBoard to display notices on Django
+BulletinBoard to display notices on Django.It is basically an Internet site where users can post comments about a particular issue or topic and reply to other users' postings.
 
 ## TO DO ##
 * Add signup feature
