@@ -33,6 +33,9 @@ def logout(request):
 
 @login_required(login_url='/bulletin/')
 def notice(request):
+	""" 
+	Returns the lists of notices in sorted order
+	"""
 	latest_notice_list = Notice.objects.order_by('-upload')
 	template = loader.get_template('bulletin/notices.html')
 	context = {
